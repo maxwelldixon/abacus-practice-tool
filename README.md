@@ -1,4 +1,5 @@
 # abacus-practice-tool
+[![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/downloads/release/python-270/)
 Simple tool that creates addition problems and a file to track progress.
 
 It will prompt you for how many questions you would like complete.
