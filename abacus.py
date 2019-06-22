@@ -13,7 +13,7 @@ def addition():
 	
 	# Asks user how many problems he/she would like to complete
 	num_problems = input("How many problems would you like to do? ")
-
+	
 	# Loop creating random addition problems that keeps track of their sums
 	# and how many problems there are.
 	for num in range(1, num_problems + 1):
@@ -43,13 +43,13 @@ def my_progress():
   
 	my_progress.close()
 
-def main():
+if __name__ == "__main__":
 	addition()
-	ans = raw_input("Would you like to see the answers? ")
-	if ans == "y":
-		print list_of_answers
+	ans = raw_input("To view the answers enter Y: ")
+	if ans == "Y":
+		for i in range(0, len(list_of_answers)):		
+			print str(i+1) + ". " + str(list_of_answers[i])
 	my_progress()
 
-main()
 
 	 
