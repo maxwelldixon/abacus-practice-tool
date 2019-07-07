@@ -3,14 +3,17 @@
 """
 import random
 import time
-from datetime import timedelta
+from datetime import timedelta, date
 
 list_of_answers = []
 start_time = 0
 end_time = 0
 elapsed_time = ""
+date_today = ""
 
 def addition():
+
+	global start_time
 
 	# Keeps track of how many problems have been assigned
 	count = 1
@@ -20,7 +23,6 @@ def addition():
 	
 	# Starts timer
 	print "Starting timer. The timer ends when you enter 'y' to see the answers."
-	global start_time
 	start_time = time.time()
 	
 	# Loop creating random addition problems that keeps track of their sums
@@ -35,21 +37,23 @@ def addition():
 		list_of_answers.append(sum_xy)
 
 def my_progress_file():
+	
+	global elapsed_time	
+	global date_today
 
 	# Creating a file that records my progress (ie. completion % and time)
 	my_progress = open("abacus_progress.txt", "a")
 	
-	# Number of problems, minutes and seconds taken to complete,
-	# number of questions that were incorrect, and date
+	# Number of problems, today's date,  minutes and seconds taken to complete,
+	# number of questions that were incorrect
 	num_problems = str(len(list_of_answers))
-	date = raw_input("Enter today's date, (eg. 2019/03/11): ")
-	time_in_seconds = end_time - start_time
-	global elapsed_time 
+	date_today = str(date.today())
+	time_in_seconds = end_time - start_time 
 	elapsed_time = str(timedelta(seconds = time_in_seconds))
 	num_wrong = raw_input("Enter how many problems did you get wrong: ")
 
 	# Writes my progress to a text file
-	my_progress.write("On " + date + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
+	my_progress.write("On " + date_today + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
   
 	my_progress.close()
 
