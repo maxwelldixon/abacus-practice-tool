@@ -50,7 +50,7 @@ def my_progress_file():
 	date_today = str(date.today())
 	time_in_seconds = end_time - start_time 
 	elapsed_time = str(timedelta(seconds = time_in_seconds))
-	num_wrong = raw_input("Enter how many problems did you get wrong: ")
+	num_wrong = raw_input("How many problems did you get wrong? ")
 
 	# Writes my progress to a text file
 	my_progress.write("On " + date_today + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
