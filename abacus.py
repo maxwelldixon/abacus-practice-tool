@@ -22,7 +22,6 @@ def addition():
 	print "Starting timer. The timer ends when you enter 'y' to see the answers."
 	global start_time
 	start_time = time.time()
-	print start_time
 	
 	# Loop creating random addition problems that keeps track of their sums
 	# and how many problems there are.
@@ -45,21 +44,23 @@ def my_progress_file():
 	num_problems = str(len(list_of_answers))
 	date = raw_input("Enter today's date, (eg. 2019/03/11): ")
 	time_in_seconds = end_time - start_time
-	global elapsed_time  #str(timedelta(seconds = time_in_seconds))
+	global elapsed_time 
 	elapsed_time = str(timedelta(seconds = time_in_seconds))
 	num_wrong = raw_input("Enter how many problems did you get wrong: ")
 
 	# Writes my progress to a text file
-	my_progress.write("On " + date + " you completed " + num_problems + " problem(s) in " + elapsed_time + " seconds, and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
+	my_progress.write("On " + date + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
   
 	my_progress.close()
 
 if __name__ == "__main__":
+	
 	addition()
 	ans = raw_input("To view the answers enter 'y': ")
+	
+	# If user hits 'y' immediately the timer will display an incorrect time (eg. -18085 days). 
 	if ans == "y":
-		end_time = time.time()
-		print end_time		
+		end_time = time.time()		
 		for i in range(0, len(list_of_answers)):		
 			print str(i+1) + ". " + str(list_of_answers[i])
 	my_progress_file()
