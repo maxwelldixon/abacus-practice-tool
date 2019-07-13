@@ -1,6 +1,7 @@
 """ This program prints addition problems with numbers ranging from 1-1000
     for practice with an abacus.
 """
+from __future__ import division
 import random
 import time
 from datetime import timedelta, date
@@ -36,6 +37,81 @@ def addition():
 		count += 1
 		list_of_answers.append(sum_xy)
 
+def subtraction():
+
+	global start_time
+
+	# Keeps track of how many problems have been assigned
+	count = 1
+	
+	# Asks user how many problems he/she would like to complete
+	num_problems = input("How many problems would you like to do? ")
+	
+	# Starts timer
+	print "Starting timer. The timer ends when you enter 'y' to see the answers."
+	start_time = time.time()
+	
+	# Loop creating random subtraction problems that keeps track of their sums
+	# and how many problems there are.
+	for num in range(1, num_problems + 1):
+		x = random.randint(1, 1000)
+		y = random.randint(1, 1000)
+		print "%d. %d - %d" % (count, x, y)
+		print "           "
+		sub_xy = x - y
+		count += 1
+		list_of_answers.append(sub_xy)
+
+def multiplication():
+
+	global start_time
+
+	# Keeps track of how many problems have been assigned
+	count = 1
+	
+	# Asks user how many problems he/she would like to complete
+	num_problems = input("How many problems would you like to do? ")
+	
+	# Starts timer
+	print "Starting timer. The timer ends when you enter 'y' to see the answers."
+	start_time = time.time()
+	
+	# Loop creating random multiplication problems that keeps track of their sums
+	# and how many problems there are.
+	for num in range(1, num_problems + 1):
+		x = random.randint(1, 1000)
+		y = random.randint(1, 1000)
+		print "%d. %d * %d" % (count, x, y)
+		print "           "
+		mult_xy = x * y
+		count += 1
+		list_of_answers.append(mult_xy)
+
+def division():
+
+	global start_time
+
+	# Keeps track of how many problems have been assigned
+	count = 1
+	
+	# Asks user how many problems he/she would like to complete
+	num_problems = input("How many problems would you like to do? ")
+	
+	# Starts timer
+	print "Starting timer. The timer ends when you enter 'y' to see the answers."
+	start_time = time.time()
+	
+	# Loop creating random division problems that keeps track of their sums
+	# and how many problems there are.
+	for num in range(1, num_problems + 1):
+		x = random.randint(1, 1000)
+		y = random.randint(1, 1000)
+		print "%d. %d / %d" % (count, x, y)
+		print "           "
+		div_xy = x / y
+		count += 1
+		list_of_answers.append(div_xy)
+
 def my_progress_file():
 	
 	global elapsed_time	
@@ -59,7 +135,19 @@ def my_progress_file():
 
 if __name__ == "__main__":
 	
-	addition()
+	type_of_problems = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
+	
+	if type_of_problems == "add":
+		addition()
+	elif type_of_problems == "sub":
+		subtraction()
+	elif type_of_problems == "mult":
+		multiplication()
+	elif type_of_problems == "div":
+		division()
+	else:
+		print "Please enter add, sub, mult, or div."
+
 	ans = raw_input("To view the answers enter 'y': ")
 	
 	# If user hits 'y' immediately the timer will display an incorrect time (eg. -18085 days). 
