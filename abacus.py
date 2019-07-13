@@ -29,13 +29,13 @@ def list_problems(binary_operation):
 	# Keeps track of how many problems have been assigned
 	problem_count = 1
 
-	# Asks user how many problems he/she would like to complete
+	# Asks user for number of problems
 	while True: 
 		try:
 			num_problems = int(raw_input("How many problems would you like to do? "))
 		except ValueError:
-				print "Please enter an integer."
-				continue
+			print "Please enter an integer."
+			continue
 		else:
 			break
 
@@ -73,7 +73,7 @@ def my_progress_file():
 	global elapsed_time	
 	global date_today
 
-	# Creating a file that records my progress (ie. completion % and time)
+	# Creating a file that records user's progress (ie. completion % and time)
 	my_progress = open("abacus_progress.txt", "a")
 	
 	num_problems = str(len(list_of_answers))
@@ -91,7 +91,7 @@ def my_progress_file():
 			num_wrong = str(num_wrong)
 			break
 
-	# Writes my progress to a text file
+	# Writes user's progress to a text file
 	my_progress.write("On " + date_today + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
   
 	my_progress.close()
