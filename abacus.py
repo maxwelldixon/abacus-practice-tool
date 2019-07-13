@@ -1,4 +1,4 @@
-""" This program prints addition problems with numbers ranging from 1-1000
+""" This program prints arithmetic problems with numbers ranging from 1-1000
     for practice with an abacus.
 """
 from __future__ import division
@@ -12,105 +12,53 @@ end_time = 0
 elapsed_time = ""
 date_today = ""
 
-def addition():
+def list_problems(binary_operation):
 
 	global start_time
 
+	if binary_operation == "add":
+		operator = "+"
+	elif binary_operation == "sub":
+		operator = "-"
+	elif binary_operation == "mult":
+		operator = "*"
+	elif binary_operation == "div":
+		operator = "/"
+
 	# Keeps track of how many problems have been assigned
-	count = 1
-	
+	problem_count = 1
+
 	# Asks user how many problems he/she would like to complete
 	num_problems = input("How many problems would you like to do? ")
 	
 	# Starts timer
 	print "Starting timer. The timer ends when you enter 'y' to see the answers."
 	start_time = time.time()
-	
-	# Loop creating random addition problems that keeps track of their sums
-	# and how many problems there are.
+
+	# Loop to create problems 
 	for num in range(1, num_problems + 1):
 		x = random.randint(1, 1000)
 		y = random.randint(1, 1000)
-		print "%d. %d + %d" % (count, x, y)
+
+		print "%d. %d %s %d" % (problem_count, x, operator, y)
 		print "           "
-		sum_xy = x + y
-		count += 1
-		list_of_answers.append(sum_xy)
 
-def subtraction():
+		output = calculation(binary_operation, x, y)
 
-	global start_time
+		problem_count += 1
 
-	# Keeps track of how many problems have been assigned
-	count = 1
-	
-	# Asks user how many problems he/she would like to complete
-	num_problems = input("How many problems would you like to do? ")
-	
-	# Starts timer
-	print "Starting timer. The timer ends when you enter 'y' to see the answers."
-	start_time = time.time()
-	
-	# Loop creating random subtraction problems that keeps track of their sums
-	# and how many problems there are.
-	for num in range(1, num_problems + 1):
-		x = random.randint(1, 1000)
-		y = random.randint(1, 1000)
-		print "%d. %d - %d" % (count, x, y)
-		print "           "
-		sub_xy = x - y
-		count += 1
-		list_of_answers.append(sub_xy)
+		list_of_answers.append(output)
 
-def multiplication():
-
-	global start_time
-
-	# Keeps track of how many problems have been assigned
-	count = 1
+def calculation(binary_operation, x, y):
 	
-	# Asks user how many problems he/she would like to complete
-	num_problems = input("How many problems would you like to do? ")
-	
-	# Starts timer
-	print "Starting timer. The timer ends when you enter 'y' to see the answers."
-	start_time = time.time()
-	
-	# Loop creating random multiplication problems that keeps track of their sums
-	# and how many problems there are.
-	for num in range(1, num_problems + 1):
-		x = random.randint(1, 1000)
-		y = random.randint(1, 1000)
-		print "%d. %d * %d" % (count, x, y)
-		print "           "
-		mult_xy = x * y
-		count += 1
-		list_of_answers.append(mult_xy)
-
-def division():
-
-	global start_time
-
-	# Keeps track of how many problems have been assigned
-	count = 1
-	
-	# Asks user how many problems he/she would like to complete
-	num_problems = input("How many problems would you like to do? ")
-	
-	# Starts timer
-	print "Starting timer. The timer ends when you enter 'y' to see the answers."
-	start_time = time.time()
-	
-	# Loop creating random division problems that keeps track of their sums
-	# and how many problems there are.
-	for num in range(1, num_problems + 1):
-		x = random.randint(1, 1000)
-		y = random.randint(1, 1000)
-		print "%d. %d / %d" % (count, x, y)
-		print "           "
-		div_xy = x / y
-		count += 1
-		list_of_answers.append(div_xy)
+	if binary_operation == "add":
+		return x + y
+	elif binary_operation == "sub":
+		return x - y
+	elif binary_operation == "mult":
+		return x * y
+	elif binary_operation == "div":
+		return x / y
 
 def my_progress_file():
 	
@@ -135,18 +83,9 @@ def my_progress_file():
 
 if __name__ == "__main__":
 	
-	type_of_problems = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
+	binary_operation = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
 	
-	if type_of_problems == "add":
-		addition()
-	elif type_of_problems == "sub":
-		subtraction()
-	elif type_of_problems == "mult":
-		multiplication()
-	elif type_of_problems == "div":
-		division()
-	else:
-		print "Please enter add, sub, mult, or div."
+	list_problems(binary_operation)
 
 	ans = raw_input("To view the answers enter 'y': ")
 	
@@ -155,6 +94,7 @@ if __name__ == "__main__":
 		end_time = time.time()		
 		for i in range(0, len(list_of_answers)):		
 			print str(i+1) + ". " + str(list_of_answers[i])
+
 	my_progress_file()
 
 
