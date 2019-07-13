@@ -5,6 +5,7 @@ from __future__ import division
 import random
 import time
 from datetime import timedelta, date
+import re
 
 list_of_answers = []
 start_time = 0
@@ -29,8 +30,15 @@ def list_problems(binary_operation):
 	problem_count = 1
 
 	# Asks user how many problems he/she would like to complete
-	num_problems = input("How many problems would you like to do? ")
-	
+	while True: 
+		try:
+			num_problems = int(raw_input("How many problems would you like to do? "))
+		except ValueError:
+				print "Please enter an integer."
+				continue
+		else:
+			break
+
 	# Starts timer
 	print "Starting timer. The timer ends when you enter 'y' to see the answers."
 	start_time = time.time()
@@ -68,13 +76,20 @@ def my_progress_file():
 	# Creating a file that records my progress (ie. completion % and time)
 	my_progress = open("abacus_progress.txt", "a")
 	
-	# Number of problems, today's date,  minutes and seconds taken to complete,
-	# number of questions that were incorrect
 	num_problems = str(len(list_of_answers))
 	date_today = str(date.today())
 	time_in_seconds = end_time - start_time 
 	elapsed_time = str(timedelta(seconds = time_in_seconds))
-	num_wrong = raw_input("How many problems did you get wrong? ")
+
+	while True: 
+		try:
+			num_wrong = int(raw_input("How many problems did you get wrong? "))
+		except:
+			print "Please enter an integer."
+			continue
+		else:
+			num_wrong = str(num_wrong)
+			break
 
 	# Writes my progress to a text file
 	my_progress.write("On " + date_today + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
@@ -83,17 +98,27 @@ def my_progress_file():
 
 if __name__ == "__main__":
 	
-	binary_operation = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
-	
+	while True:
+		binary_operation = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
+		# Input Validation
+		if not re.match(r"^(add|sub|mult|div)$", binary_operation):
+			print "Please enter add, sub, mult, or div."
+			continue
+		else:
+			break
+
 	list_problems(binary_operation)
 
 	ans = raw_input("To view the answers enter 'y': ")
-	
+
 	# If user hits 'y' immediately the timer will display an incorrect time (eg. -18085 days). 
 	if ans == "y":
 		end_time = time.time()		
 		for i in range(0, len(list_of_answers)):		
 			print str(i+1) + ". " + str(list_of_answers[i])
+	else:
+		end_time = time.time()	
+		print "No answers for you."
 
 	my_progress_file()
 
