@@ -32,15 +32,15 @@ def list_problems(binary_operation):
 	# Asks user for number of problems
 	while True: 
 		try:
-			num_problems = int(raw_input("How many problems would you like to do? "))
+			num_problems = int(input("How many problems would you like to do? "))
 		except ValueError:
-			print "Please enter an integer."
+			print("Please enter an integer.")
 			continue
 		else:
 			break
 
 	# Starts timer
-	print "Starting timer. The timer ends when you enter 'y' to see the answers."
+	print("Starting timer. The timer ends when you enter 'y' to see the answers.")
 	start_time = time.time()
 
 	# Loop to create problems 
@@ -48,8 +48,8 @@ def list_problems(binary_operation):
 		x = random.randint(1, 1000)
 		y = random.randint(1, 1000)
 
-		print "%d. %d %s %d" % (problem_count, x, operator, y)
-		print "           "
+		print("%d. %d %s %d" % (problem_count, x, operator, y))
+		print("           ")
 
 		output = calculation(binary_operation, x, y)
 
@@ -83,9 +83,9 @@ def my_progress_file():
 
 	while True: 
 		try:
-			num_wrong = int(raw_input("How many problems did you get wrong? "))
+			num_wrong = int(input("How many problems did you get wrong? "))
 		except:
-			print "Please enter an integer."
+			print("Please enter an integer.")
 			continue
 		else:
 			num_wrong = str(num_wrong)
@@ -99,26 +99,26 @@ def my_progress_file():
 if __name__ == "__main__":
 	
 	while True:
-		binary_operation = raw_input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
+		binary_operation = input("What type of problems would you like to do? Enter add for addition, sub for subtraction, mult for multiplication, or div for division: ")
 		# Input Validation
 		if not re.match(r"^(add|sub|mult|div)$", binary_operation):
-			print "Please enter add, sub, mult, or div."
+			print("Please enter add, sub, mult, or div.")
 			continue
 		else:
 			break
 
 	list_problems(binary_operation)
 
-	ans = raw_input("To view the answers enter 'y': ")
+	ans = input("To view the answers enter 'y': ")
 
 	# If user hits 'y' immediately the timer will display an incorrect time (eg. -18085 days). 
 	if ans == "y":
 		end_time = time.time()		
 		for i in range(0, len(list_of_answers)):		
-			print str(i+1) + ". " + str(list_of_answers[i])
+			print(str(i+1) + ". " + str(list_of_answers[i]))
 	else:
 		end_time = time.time()	
-		print "No answers for you."
+		print("No answers for you.")
 
 	my_progress_file()
 

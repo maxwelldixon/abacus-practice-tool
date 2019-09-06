@@ -1,6 +1,6 @@
 # Abacus Practice Tool 
 
-[![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/downloads/release/python-270/)
+[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
 ## Introduction
 
@@ -9,7 +9,7 @@ A python program that generates arithmetic problems and a text file to help keep
 
 ## Installation
 
-Install python version 2.7 and download the repository.
+Install python version 3.7 and download the repository.
 
 ## Usage
 
