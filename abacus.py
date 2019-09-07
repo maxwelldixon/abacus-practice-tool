@@ -48,7 +48,7 @@ def list_problems(binary_operation):
 		x = random.randint(1, 1000)
 		y = random.randint(1, 1000)
 
-		print("%d. %d %s %d" % (problem_count, x, operator, y))
+		print(f"{problem_count}. {x} {operator} {y}")
 		print("           ")
 
 		output = calculation(binary_operation, x, y)
@@ -92,8 +92,8 @@ def my_progress_file():
 			break
 
 	# Writes user's progress to a text file
-	my_progress.write("On " + date_today + " you completed " + num_problems + " problem(s) in " + elapsed_time + " and you missed " + num_wrong + " out of " + num_problems + "." + "\n")
-  
+	my_progress.write(f"On {date_today} you completed {num_problems} problem(s) in {elapsed_time} and you missed {num_wrong} out of {num_problems}.\n")
+
 	my_progress.close()
 
 if __name__ == "__main__":
@@ -115,12 +115,9 @@ if __name__ == "__main__":
 	if ans == "y":
 		end_time = time.time()		
 		for i in range(0, len(list_of_answers)):		
-			print(str(i+1) + ". " + str(list_of_answers[i]))
+			print(f"{str(i+1)}. {str(list_of_answers[i])}")
 	else:
 		end_time = time.time()	
 		print("No answers for you.")
 
 	my_progress_file()
-
-
-	 
